@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
-import List from '@material-ui/core/List';
-import { Divider, Button } from '@material-ui/core';
+import { withStyles, Divider, Button, List } from '@material-ui/core';
 import SidebarItemComponent from '../sidebar-item/sidebarItem';
 
 class SideBarComponent extends Component {
@@ -36,7 +34,7 @@ class SideBarComponent extends Component {
                             notes.map((note, index) => {
                                 return (
                                     <div key={index}>
-                                        <SidebarItemComponent note={note} index={index} selectedNoteIndex={selectedNoteIndex} selectNote={this.selectNote} deleteNote={this.deleteNote}></SidebarItemComponent>
+                                        <SidebarItemComponent note={note} index={index} selectedNoteIndex={selectedNoteIndex} selectNote={this.selectNote} deleteNote={this.deleteNote} changeIndex={this.changeIndex}></SidebarItemComponent>
                                         <Divider />
                                     </div>
                                 )
@@ -74,6 +72,10 @@ class SideBarComponent extends Component {
 
     deleteNote = (note) => {
         this.props.deleteNote(note);
+    }
+
+    changeIndex = (index, dir) => {
+        this.props.changeIndex(index, dir);
     }
 }
 

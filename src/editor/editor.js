@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
-import debounce from '../helpers';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
-import { withStyles } from '@material-ui/core/styles';
+import debounce from '../util/helpers';
+import { BorderColor as BorderColorIcon } from '@material-ui/icons';
+import { withStyles } from '@material-ui/core';
 import styles from './styles';
 
 class EditorComponent extends Component {

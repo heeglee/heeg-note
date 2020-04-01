@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { removeHTMLTags } from '../helpers';
+import { Delete as DeleteIcon, KeyboardArrowUp as KeyboardArrowUpIcon, KeyboardArrowDown as KeyboardArrowDownIcon } from '@material-ui/icons';
+import { removeHTMLTags } from '../util/helpers';
+import { ListItem, ListItemText, withStyles } from '@material-ui/core';
 
 class SidebarItemComponent extends Component {
 
@@ -18,6 +16,8 @@ class SidebarItemComponent extends Component {
                     <div className={classes.textSection} onClick={() => this.selectNote(note, index)}>
                         <ListItemText primary={note.title} secondary={bodyString.length > 30 ? bodyString.substring(0, 30) + '...' : bodyString} />
                     </div>
+                    <KeyboardArrowUpIcon className={classes.orderUpIcon} onClick={() => this.changeIndex(index, "up")} />
+                    <KeyboardArrowDownIcon className={classes.orderDownIcon} onClick={() => this.changeIndex(index, "down")} />
                     <DeleteIcon onClick={() => this.deleteNote(note)} className={classes.deleteIcon} />
                 </ListItem>
             </div>
@@ -32,6 +32,10 @@ class SidebarItemComponent extends Component {
         if (window.confirm(`Are you sure you want to delete: ${note.title}?`)) {
             this.props.deleteNote(note);
         }
+    }
+
+    changeIndex = (index, dir) => {
+        this.props.changeIndex(index, dir);
     }
 }
 
